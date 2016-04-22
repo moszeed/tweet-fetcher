@@ -1,0 +1,35 @@
+{
+  "name": "tweet-fetcher",
+  "version": "1.0.0",
+  "description": "get your tweets from twitter without a api key",
+  "main": "./src/tweet-fetcher.js",
+  "scripts": {
+    "test"        : "npm run test:node && npm run test:browser",
+    "test:node"   : "node ./tests/tests.js | tap-spec",
+    "test:browser": "browserify ./tests/tests.js | tape-run | tap-spec"
+  },
+  "keywords": [
+    "twitter",
+    "tweets",
+    "fetch",
+    "get"
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/moszeed/tweet-fetcher.git"
+  },
+  "author": "Michael Röber",
+  "license": "MIT",
+  "dependencies": {
+    "domutils": "^1.5.1",
+    "htmlparser2": "^3.9.0",
+    "underscore": "^1.8.3",
+    "xhr-request": "^1.0.1"
+  },
+  "devDependencies": {
+    "tape"      : "^4.5.1",
+    "tap-spec"  : "^4.1.1",
+    "tape-run"  : "^2.1.3",
+    "browserify": "^13.0.0"
+  }
+}
