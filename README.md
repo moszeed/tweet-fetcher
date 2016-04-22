@@ -1,5 +1,7 @@
 # tweet-fetcher
 
+[![Join the chat at https://gitter.im/moszeed/tweet-fetcher](https://badges.gitter.im/moszeed/tweet-fetcher.svg)](https://gitter.im/moszeed/tweet-fetcher?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Get your Tweets from Twitter, in Node and Browser (with Browserify),  
 without using the Twitter 1.1 API.  
 Based on Jason Mayes "twitter-post-fetcher" https://github.com/jasonmayes/Twitter-Post-Fetcher
