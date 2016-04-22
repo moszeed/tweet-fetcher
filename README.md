@@ -12,9 +12,10 @@ Based on Jason Mayes "twitter-post-fetcher" https://github.com/jasonmayes/Twitte
 ## How to use ?
 
 1. Create a Widget: https://twitter.com/settings/widgets
-2. Copy the Widget-ID
-3. do this:
+2. Copy the Widget-ID  
+3. Add this to your Code:  
 
+```
     (function() {
 
         "use strict";
@@ -37,5 +38,5 @@ Based on Jason Mayes "twitter-post-fetcher" https://github.com/jasonmayes/Twitte
                console.log(err);
             });
     })();
-    
+```
     
