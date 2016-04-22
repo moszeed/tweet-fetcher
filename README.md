@@ -4,7 +4,7 @@ Get your Tweets from Twitter, in Node and Browser (with Browserify),
 without using the Twitter 1.1 API.  
 Based on Jason Mayes "twitter-post-fetcher" https://github.com/jasonmayes/Twitter-Post-Fetcher
 
-[![Join the chat at https://gitter.im/moszeed/tweetFetcher](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/moszeed/tweetFetcher?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/moszeed/tweet-fetcher](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/moszeed/tweet-fetcher?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 
