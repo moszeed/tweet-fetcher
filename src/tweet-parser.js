@@ -1,17 +1,16 @@
-(function() {
+(function () {
+    'use strict';
 
-    "use strict";
-
-    var _          = require('underscore');
+    var _ = require('underscore');
     var htmlparser = require('htmlparser2');
-    var domutils   = require('domutils');
+    var domutils = require('domutils');
 
     var imageTypes = {
-        "Avatar"            : "avatar",
-        "NaturalImage-image": "tweetImage"
+        'Avatar' : 'avatar',
+        'NaturalImage-image': 'tweetImage'
     };
 
-    function parseTweetContent(tweetNode) {
+    function parseTweetContent (tweetNode) {
 
         var pTweetItems = domutils.getElementsByTagName ('p', tweetNode);
 
@@ -40,7 +39,7 @@
         return tweet;
     }
 
-    function parseTweetImages(tweetNode) {
+    function parseTweetImages (tweetNode) {
 
         var imgTweetItems = domutils.getElementsByTagName ('img', tweetNode);
         var images = [];
@@ -78,7 +77,7 @@
         return images;
     }
 
-    function parseUserData(tweetNode) {
+    function parseUserData (tweetNode) {
 
         var userData = {};
         var userDataSpans = domutils.getElementsByTagName('span', tweetNode);
@@ -111,7 +110,7 @@
         return userData;
     }
 
-    function parsePermaLinks(tweetNode) {
+    function parsePermaLinks (tweetNode) {
 
         var permaLink  = null;
         var permaLinks = domutils.getElementsByTagName('a', tweetNode);
@@ -126,7 +125,7 @@
         return permaLink;
     }
 
-    function parseUpdateTime(tweetNode) {
+    function parseUpdateTime (tweetNode) {
 
         var timeNodes      = domutils.getElementsByTagName('time', tweetNode);
         var timeAttributes = timeNodes[0].attribs;
@@ -138,49 +137,39 @@
         }
     }
 
-    exports.parseTweets = function(body) {
-
-        return new Promise(function(resolve, reject) {
-
-            try
-            {
+    exports.parseTweets = function (body) {
+        return new Promise(function (resolve, reject) {
+            try {
                 var handler = new htmlparser.DomHandler(function (error, dom) {
                     if (error) reject(error);
                     else {
+                        var tweets = [];
+                        var divs = domutils.getElementsByTagName('div', dom);
 
-                        var tweets    = [];
-                        var divs = domutils.getElementsByTagName ('div', dom);
-
-                        _.each(divs, function(divItem) {
-
+                        _.each(divs, function (divItem) {
                             if (divItem.attribs &&
                                 divItem.attribs.class.search('timeline-Tweet ') !== -1) {
-
                                 var tweet = {};
-                                    tweet.content    = parseTweetContent(divItem);
-                                    tweet.images     = parseTweetImages(divItem);
-                                    tweet.permaLink  = parsePermaLinks(divItem);
-                                    tweet.time       = parseUpdateTime(divItem);
-                                    tweet.user       = parseUserData(divItem);
+                                tweet.content = parseTweetContent(divItem);
+                                tweet.images = parseTweetImages(divItem);
+                                tweet.permaLink = parsePermaLinks(divItem);
+                                tweet.time = parseUpdateTime(divItem);
+                                tweet.user = parseUserData(divItem);
 
                                 tweets.push(tweet);
                             }
                         });
-
 
                         resolve(tweets);
                     }
                 });
 
                 var parser = new htmlparser.Parser(handler);
-                    parser.write(body);
-                    parser.done();
-            }
-            catch(err) {
+                parser.write(body);
+                parser.done();
+            } catch (err) {
                 reject(err);
             }
         });
     };
-
-
-})()
+})();

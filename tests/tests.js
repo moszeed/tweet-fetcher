@@ -27,7 +27,7 @@
 
     test('fetch.default', function(t) {
 
-        tweetFetcher.fetch(config)
+        tweetFetcher(config)
             .then((tweets) => {
                 t.ok(tweets.length === 20, '20 tweets fetched');
                 tweetsStore = tweets;
@@ -40,7 +40,7 @@
 
         config.language = 'de';
 
-        tweetFetcher.fetch(config)
+        tweetFetcher(config)
             .then((tweets) => {
                 t.ok(tweets.length === 20, '20 tweets fetched');
                 tweetsStoreDE = tweets;
@@ -52,11 +52,11 @@
     test('tweets.check.default', function(t) {
         _.each(tweetsStore, function(tweet, index) {
             t.comment('tweet at index:' + index)
-            t.ok(tweet.content, 'content available: ' + tweet.content);
-            t.ok(tweet.permaLink, 'permaLink available: ' + tweet.permaLink);
-            t.ok(tweet.user, 'user available: ' + JSON.stringify(tweet.user));
-            t.ok(tweet.images, 'images available: ' + JSON.stringify(tweet.images));
-            t.ok(tweet.time, 'time available: ' + JSON.stringify(tweet.time));
+            t.ok(tweet.hasOwnProperty('content'), 'content available: ' + tweet.content);
+            t.ok(tweet.hasOwnProperty('permaLink'), 'permaLink available: ' + tweet.permaLink);
+            t.ok(tweet.hasOwnProperty('user'), 'user available: ' + JSON.stringify(tweet.user));
+            t.ok(tweet.hasOwnProperty('images'), 'images available: ' + JSON.stringify(tweet.images));
+            t.ok(tweet.hasOwnProperty('time'), 'time available: ' + JSON.stringify(tweet.time));
         });
         t.end();
     });
@@ -64,11 +64,11 @@
     test('tweets.check.DE', function(t) {
         _.each(tweetsStoreDE, function(tweet, index) {
             t.comment('tweet at index:' + index)
-            t.ok(tweet.content, 'content available: ' + tweet.content);
-            t.ok(tweet.permaLink, 'permaLink available: ' + tweet.permaLink);
-            t.ok(tweet.user, 'user available: ' + JSON.stringify(tweet.user));
-            t.ok(tweet.images, 'images available: ' + JSON.stringify(tweet.images));
-            t.ok(tweet.time, 'time available: ' + JSON.stringify(tweet.time));
+            t.ok(tweet.hasOwnProperty('content'), 'content available: ' + tweet.content);
+            t.ok(tweet.hasOwnProperty('permaLink'), 'permaLink available: ' + tweet.permaLink);
+            t.ok(tweet.hasOwnProperty('user'), 'user available: ' + JSON.stringify(tweet.user));
+            t.ok(tweet.hasOwnProperty('images'), 'images available: ' + JSON.stringify(tweet.images));
+            t.ok(tweet.hasOwnProperty('time'), 'time available: ' + JSON.stringify(tweet.time));
             t.ok(tweet.time.timeAsTextShort.search('Veröffentlicht') !== -1, 'its german');
         });
         t.end();
